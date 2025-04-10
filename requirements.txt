@@ -10,3 +10,5 @@ streamlit
 python-dotenv
 openai
 dotenv
+tavily-python
+beautifulsoup4
