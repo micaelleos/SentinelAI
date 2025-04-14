@@ -64,6 +64,8 @@ IMPORTATE:
 - Assim que você identificar o risco de uma possível crise de imagem, você deve propor um plano de ação para tratar da crise 
 - Antes de iniciar a análise sempre avise ao usuário.
 - Você deve formartar o resultados das análises dos agentes e apresentar de forma estruturada ao usuário.
+- IMPORTANTE: FAÇA SEMPRE Após cada análise você deve apresentar ao usuário de forma detalhada o score por dimensão trazendo justificativas para as notas, e as principais notícias.
+- Sempre que você apresentar notícias, apresente o link da notícia ao usuário.
 """
 
 prompt_agent_analizer = ChatPromptTemplate.from_messages([

@@ -6,7 +6,7 @@ st.markdown("""
 
 ## 🧠 Visão Geral
 
-O SentinelAI é composto por um conjunto de **agentes especializados**, cada um com uma função bem definida na cadeia de análise reputacional. Eles operam em um **fluxo de trabalho estruturado e colaborativo**, orientado por uma abordagem de **raciocínio passo a passo (chain-of-thought reasoning)**.
+O SentinelAI é composto por um conjunto de **agentes especializados**, cada um com uma função bem definida na cadeia de análise reputacional. Eles operam como Agentes ReAct em um **fluxo de trabalho estruturado e colaborativo**, orientado por uma abordagem de **raciocínio passo a passo (chain-of-thought reasoning)**. Para evitar halicinações, a saída dos agente intermediários são sempre estruturadas.
 
 O objetivo do sistema é coletar, interpretar e sintetizar informações públicas sobre uma empresa, entregando **um diagnóstico reputacional por domínio**, com base em análises qualitativas e quantitativas.
 
@@ -37,6 +37,8 @@ O objetivo do sistema é coletar, interpretar e sintetizar informações públic
 
 > Exemplo: Para ESG → “Empresa + sustentabilidade + relatório + carbono + governança + ambiental”
 
+- Este agente possui acesso a uma ferramenta de busca de site na web, chamada Tavily, para fazer buscas iniciais sobre as empresas. ​A Tavily é uma empresa especializada em fornecer APIs de busca otimizadas para Modelos de Linguagem de Grande Escala (LLMs) e agentes de inteligência artificial (IA). Seu principal produto, o Tavily Search API, oferece informações em tempo real, precisas e imparciais, permitindo que aplicações de IA acessem dados atualizados de forma eficiente. ​
+
 ---
 
 ### 2. **Execução da Busca (Agente de Busca)**
@@ -46,6 +48,8 @@ O objetivo do sistema é coletar, interpretar e sintetizar informações públic
 - Coleta: Links, trechos de manchete, snippets e metadados (data, veículo)
 
 > Exemplo: 5 a 10 resultados potenciais por dimensão
+            
+- Este agente também possui acesso à ferramenta de busca Tavily.
 
 ---
 
@@ -55,6 +59,7 @@ O objetivo do sistema é coletar, interpretar e sintetizar informações públic
 - Analisa: Grau de aderência temática à dimensão
 - Filtra: Apenas as notícias que realmente trazem conteúdo útil para o diagnóstico
 - Output: Lista validada de notícias relevantes
+- Este agente possui acesso a uma ferramenta de leitura de artigos na web chamada Jina AI. Essa ferramenta filtra e formata em markdown as informações relevantes nos sites.
 
 ---
 
@@ -121,7 +126,6 @@ Supervisor → ativa Agente Planejador (dimensão ESG)
 Supervisor → sintetiza o diagnóstico e retorna ao usuário:
 “Nota 4.2 em ESG. A empresa foi elogiada por adotar padrões internacionais de sustentabilidade...”
 ```
-
 ---
 
 ## 🧩 Interdependência entre os Agentes
@@ -138,7 +142,11 @@ graph TD
 ```
 
 Cada etapa é **ativada sob demanda**, e os dados trafegam entre os agentes em **formato estruturado e rastreável**, permitindo auditoria e explicabilidade.
+""")
 
+st.image('workflow.PNG')
+
+st.markdown("""
 ---
 
 ## ✅ Vantagens da Arquitetura
