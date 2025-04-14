@@ -117,9 +117,9 @@ def memory(id):
 class Analyzer:
     def __init__(self,id):
         self.config = {"configurable": {"thread_id": str(id)}}
-
+        self.id = id
         self.chat_model_with_router = llm.bind_tools([analise_empresa])
-        self.memory = memory(uuid.uuid4())
+        self.memory = memory(self.id)
         # Define a new graph
         self.workflow_analizer = StateGraph(AgenteAnalizer)
 

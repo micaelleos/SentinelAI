@@ -14,6 +14,7 @@ def response_generator(response):
         time.sleep(0.05)
 
 if "messages" not in st.session_state:
+    st.session_state.id = uuid.uuid4()
     st.session_state.messages = []
     st.session_state.messages.append({"role": "assistant", "content":saudacao})
     st.session_state.var_exibicao=0
@@ -21,7 +22,7 @@ if "messages" not in st.session_state:
 if "issues" not in st.session_state:
     st.session_state.issues = []
 
-bot = Analyzer(str(uuid.uuid4()))
+bot = Analyzer(str(st.session_state.id))
 
 with st.container():
     st.markdown("## SentinelAI")
