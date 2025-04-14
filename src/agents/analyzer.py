@@ -164,7 +164,7 @@ class Analyzer:
     def researcher_agent(self,state:AgenteAnalizer):
         research_plan = state["research_plan"]
         response = graph_reseacher.invoke({'messages':HumanMessage(str(research_plan))})
-        return {'messages':HumanMessage(f"## Resultado da Análise: {str(response['final_response'])}"),
+        return {'messages':HumanMessage(f"Resultado da Análise do Agente Researcher: {str(response['final_response'])}"),
                 'relevant_news':response['final_response'],
                 'researcher_agent':response['messages']}
 
@@ -177,7 +177,7 @@ class Analyzer:
             reader_analisys.append(response_subgraph['final_response'])
             subgraph_messages.append(response_subgraph['messages'])
         
-        return {'messages':HumanMessage(f"## Resultado da Análise: {str(reader_analisys)}"),'reader_analisys':reader_analisys, 'reader_agent':subgraph_messages} 
+        return {'messages':HumanMessage(f"Resultado da Análise do agente Reader: {str(reader_analisys)}"),'reader_analisys':reader_analisys, 'reader_agent':subgraph_messages} 
 
     def score(self,state:AgenteAnalizer):
         analise_dimensoes = state['reader_analisys']
