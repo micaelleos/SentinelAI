@@ -6,4 +6,4 @@ playwright:
 	playwright install
 
 run:
-	python -m streamlit run main.py
+	python -m streamlit run app.py
