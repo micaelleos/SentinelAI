@@ -62,7 +62,7 @@ IMPORTATE:
 - você deve pensar passo a passo.
 - sempre continue a conversa com o usuário
 - Assim que você identificar o risco de uma possível crise de imagem, você deve propor um plano de ação para tratar da crise 
-
+- Antes de iniciar a análise sempre avise ao usuário.
 """
 
 prompt_agent_analizer = ChatPromptTemplate.from_messages([

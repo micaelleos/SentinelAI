@@ -2,6 +2,9 @@
 import streamlit as st
 import time
 from src.agents.analyzer import Analyzer
+from langchain_core.messages import HumanMessage,  SystemMessage, AIMessage, ToolMessage
+
+from src.text import saudacao
 
 # Streamed response emulator
 def response_generator(response):
@@ -21,9 +24,8 @@ if "issues" not in st.session_state:
 bot = Analyzer('6464')
 
 with st.container():
-    st.markdown("## Sentinela")
+    st.markdown("## SentinelAI")
     
-
 @st.fragment
 def atualizar_chat(chat_container,prompt=None):
     with chat_container:
@@ -34,7 +36,7 @@ def atualizar_chat(chat_container,prompt=None):
 
             if st.session_state.var_exibicao==0:#len(messages)==0:
                 with st.chat_message(messages[0]["role"]):
-                    st.write_stream(response_generator(messages[0]["content"]))
+                    st.write_stream(response_generator(saudacao))
 
                 st.session_state.var_exibicao=1
             else:
@@ -51,10 +53,24 @@ def atualizar_chat(chat_container,prompt=None):
 
             with st.chat_message("assistant"):
                 with st.spinner(''):
-                    response=bot.invoke(prompt)
-                st.write_stream(response_generator(response))
+                    for role, response in bot.stream(prompt):
+                        
+                        if role:
+                            role_str = role[0]
+                            role_name, role_id = role_str.split(":")
+                            if not isinstance(response['messages'][-1],HumanMessage):
 
-            st.session_state.messages.append({"role": "assistant", "content": response})
+                                if isinstance(response['messages'][-1],ToolMessage):
+                                    with st.expander(f"Agente {str(role_name).title()} usando ferramenta ..."):  
+                                        st.write(response['messages'][-1].content)
+                                else:
+                                    with st.expander(f"Agente {str(role_name).title()} pensando ..."):  
+                                        st.write(response['messages'][-1].content)
+                        else:
+                            if not isinstance(response['messages'][-1],HumanMessage):
+                                #st.write(response['messages'][-1].content)
+                                st.write_stream(response_generator(response['messages'][-1].content))
+                                st.session_state.messages.append({"role": "assistant", "content": response['messages'][-1].content})
 
 chat_container = st.container(height=400,border=False)
 
