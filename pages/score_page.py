@@ -177,7 +177,4 @@ Cada uma dessas áreas recebe um score individual, permitindo um diagnóstico re
 
 Essa métrica oferece uma abordagem estruturada e escalável para traduzir conteúdo subjetivo (notícias) em dados confiáveis para tomada de decisão. Ao considerar **sentimento, impacto e fonte**, ela garante **profundidade analítica**, evitando distorções comuns em métricas reputacionais genéricas.
 
----
-
-Se quiser, posso converter esse conteúdo em formato PDF, Markdown, ou colocá-lo em um template visual (como um relatório institucional). Deseja isso?
 """)

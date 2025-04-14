@@ -3,7 +3,7 @@ import streamlit as st
 import time
 from src.agents.analyzer import Analyzer
 from langchain_core.messages import HumanMessage,  SystemMessage, AIMessage, ToolMessage
-
+import uuid
 from src.text import saudacao
 
 # Streamed response emulator
@@ -15,13 +15,13 @@ def response_generator(response):
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
-    st.session_state.messages.append({"role": "assistant", "content":"olá"})
+    st.session_state.messages.append({"role": "assistant", "content":saudacao})
     st.session_state.var_exibicao=0
 
 if "issues" not in st.session_state:
     st.session_state.issues = []
 
-bot = Analyzer('6464')
+bot = Analyzer(str(uuid.uuid4()))
 
 with st.container():
     st.markdown("## SentinelAI")
