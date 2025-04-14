@@ -109,7 +109,7 @@ def analise_empresa(empresa:str):
     """Chame essa ferramenta para inciar a análise. Passe o nome da empresa a ser pesquisada"""
     pass
 
-@st.cache
+@st.cache_resource()
 def memory(id):
     memory_analizer = MemorySaver()
     return memory_analizer
@@ -203,7 +203,7 @@ class Analyzer:
     
     def invoke(self,query:str):
         response = self.graph_analizer.invoke({'messages':HumanMessage(query)},config=self.config)
-        return response, response["messages"][-1]
+        return response["messages"][-1].content
 
     def stream(self,query:str):
         response = []

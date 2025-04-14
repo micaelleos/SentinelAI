@@ -1,5 +1,6 @@
 from langchain_core.prompts import ChatPromptTemplate
 from datetime import date
+from src.tools import tools_planner
 
 dimensoes = """
 1. Reputação Geral: A marca é mencionada de forma positiva, neutra ou negativa nas mídias mais relevantes? O público demonstra confiança e admiração pela empresa? A organização é lembrada espontaneamente em seu setor? Existem prêmios, rankings ou reconhecimentos que reforcem sua reputação?

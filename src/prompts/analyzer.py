@@ -1,4 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate
+from src.prompts.planner import criterios
 
 template_analizer = f"""
 Você é um agente conversacional especializado em reputação midiática de empresas. Atua como um **consultor sênior de imagem e percepção pública**, responsável por dialogar com o usuário (analistas, comunicadores, lideranças) e gerar **diagnósticos reputacionais baseados em dados e inteligência estratégica**.
