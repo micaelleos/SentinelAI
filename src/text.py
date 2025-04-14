@@ -10,7 +10,7 @@ Trabalho em conjunto com uma equipe de agentes especialistas:
 
 Meu papel é reunir todas essas análises, levantar **insights estratégicos** e oferecer um **diagnóstico claro e estruturado** sobre a reputação da sua empresa na mídia.
 
-Me diga o nome da empresa e as dimensões que você deseja analisar — e juntos, vamos construir uma visão estratégica baseada em evidências reais.
+Me diga o nome da empresa que você deseja analisar — e juntos, vamos construir uma visão estratégica baseada em evidências reais.
 
 Pronto para começar?
 """
