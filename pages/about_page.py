@@ -96,10 +96,9 @@ O agente supervisor — que simula um consultor de reputação — compila os re
 | Componente | Função |
 |-----------|--------|
 | 👨‍💻 **Agente Planejador** | Define como buscar as informações com base na dimensão |
-| 🔍 **Agente de Busca** | Realiza pesquisas na internet com foco temático |
-| 📚 **Agente de Relevância** | Filtra e valida notícias de interesse |
+| 🔍 **Agente de Busca e Relevância** | Realiza pesquisas na internet com foco temático e filtra e valida notícias de interesse |
 | 🧾 **Agente Leitor** | Faz leitura e interpretação detalhada da notícia |
-| 📏 **Agente de Métrica** | Atribui a nota da notícia e calcula o score da dimensão |
+| 📏 **Cálculo de Métrica** | Atribui a nota da notícia e calcula o score da dimensão |
 | 🧠 **Agente Supervisor** | Conversa com o usuário, interpreta os dados e entrega o diagnóstico |
 
 ---

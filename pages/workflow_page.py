@@ -19,10 +19,9 @@ O objetivo do sistema é coletar, interpretar e sintetizar informações públic
 | Agente | Papel Principal | Descrição |
 |--------|------------------|-----------|
 | **Agente Planejador de Busca** | Estratégia | Define como buscar notícias para cada dimensão reputacional, estruturando prompts de pesquisa |
-| **Agente de Busca** | Coleta | Executa pesquisas em fontes online confiáveis, com base na estratégia fornecida pelo planejador |
-| **Agente de Avaliação de Relevância** | Curadoria | Avalia se as notícias encontradas são realmente relevantes para a dimensão analisada |
+| **Agente de Busca e Avaliação de Relevância** | Coleta e curadoria | Executa pesquisas em fontes online confiáveis, com base na estratégia fornecida pelo planejador. Avalia se as notícias encontradas são realmente relevantes para a dimensão analisada |
 | **Agente Leitor e Analisador** | Interpretação | Faz leitura detalhada da notícia selecionada, preenchendo estrutura padronizada com análise reputacional |
-| **Agente de Métricas** | Quantificação | Atribui notas e pontuações com base nos dados qualitativos gerados pelo leitor |
+| **Cálulo de Métricas** | Quantificação | Atribui notas e pontuações com base nos dados qualitativos gerados pelo leitor |
 | **Agente Supervisor Conversacional** | Interface e Diagnóstico | Atua como consultor conversacional. Coordena os dados dos outros agentes e interage com o usuário final |
 
 ---
@@ -46,23 +45,15 @@ O objetivo do sistema é coletar, interpretar e sintetizar informações públic
 - Recebe: Prompt estruturado do agente planejador
 - Realiza: Busca em tempo real em mecanismos de busca, com priorização de fontes confiáveis
 - Coleta: Links, trechos de manchete, snippets e metadados (data, veículo)
-
-> Exemplo: 5 a 10 resultados potenciais por dimensão
+- Analisa: Grau de aderência temática à dimensão
+- Filtra: Apenas as notícias que realmente trazem conteúdo útil para o diagnóstico
+- Output: Lista validada de notícias relevantes
+            
+> Exemplo: 3 a 5 notícias por dimensão
             
 - Este agente também possui acesso à ferramenta de busca Tavily.
 
 ---
-
-### 3. **Filtragem e Avaliação de Relevância (Agente de Relevância)**
-
-- Recebe: Lista de notícias coletadas
-- Analisa: Grau de aderência temática à dimensão
-- Filtra: Apenas as notícias que realmente trazem conteúdo útil para o diagnóstico
-- Output: Lista validada de notícias relevantes
-- Este agente possui acesso a uma ferramenta de leitura de artigos na web chamada Jina AI. Essa ferramenta filtra e formata em markdown as informações relevantes nos sites.
-
----
-
 ### 4. **Leitura e Análise de Notícia (Agente Leitor)**
 
 - Recebe: Uma notícia relevante (link ou texto completo)
@@ -76,10 +67,11 @@ O objetivo do sistema é coletar, interpretar e sintetizar informações públic
   - Justificativas e comentários
 
 - Output: Estrutura `ListNewsAnalized`, preenchida com dados analíticos
+- Este agente possui acesso a uma ferramenta de leitura de artigos na web chamada Jina AI. Essa ferramenta filtra e formata em markdown as informações relevantes nos sites.
 
 ---
 
-### 5. **Cálculo de Métrica da Dimensão (Agente de Métricas)**
+### 5. **Cálculo de Métrica da Dimensão**
 
 - Recebe: Lista de análises de notícias da dimensão
 - Executa:
@@ -119,27 +111,15 @@ O objetivo do sistema é coletar, interpretar e sintetizar informações públic
 Usuário: Quero saber como está a reputação da Vale em ESG.
 
 Supervisor → ativa Agente Planejador (dimensão ESG)
-→ ativa Agente de Busca
-→ ativa Agente de Relevância
+→ ativa Agente de Busca e Relevância
 → ativa Agente Leitor
-→ ativa Agente de Métrica
+→ ativa Cálculo de Métrica
 Supervisor → sintetiza o diagnóstico e retorna ao usuário:
 “Nota 4.2 em ESG. A empresa foi elogiada por adotar padrões internacionais de sustentabilidade...”
 ```
 ---
 
 ## 🧩 Interdependência entre os Agentes
-
-```mermaid
-graph TD
-  A[Usuário] --> S[Agente Supervisor]
-  S --> P[Planejador de Busca]
-  P --> B[Agente de Busca]
-  B --> R[Agente de Relevância]
-  R --> L[Agente Leitor]
-  L --> M[Agente de Métricas]
-  M --> S
-```
 
 Cada etapa é **ativada sob demanda**, e os dados trafegam entre os agentes em **formato estruturado e rastreável**, permitindo auditoria e explicabilidade.
 """)

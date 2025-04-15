@@ -22,8 +22,7 @@ O sistema é composto por 6 agentes principais, cada um com função específica
 | Agente                        | Papel                                       |
 |------------------------------|---------------------------------------------|
 | **Planejador de Busca**      | Estratégia de coleta por dimensão           |
-| **Executor de Busca**        | Busca em fontes confiáveis (via internet)   |
-| **Avaliador de Relevância**  | Curadoria das notícias encontradas          |
+| **Executor de Busca e Relevância**| Busca em fontes confiáveis (via internet) e faz curadoria das notícias encontradas  |
 | **Leitor/Analisador**        | Interpretação semântica das notícias        |
 | **Gerador de Métrica**       | Cálculo de pontuação reputacional (0–5)     |
 | **Supervisor Conversacional**| Interação com o usuário e síntese estratégica|
@@ -47,16 +46,7 @@ Esses fatores são ponderados e transformados em um **score normalizado entre 0 
 
 ## 🧭 Workflow do Sistema
 
-```mermaid
-graph TD
-  A[Usuário] --> S[Agente Supervisor]
-  S --> P[Planejador de Busca]
-  P --> B[Executor de Busca]
-  B --> R[Avaliador de Relevância]
-  R --> L[Leitor e Analisador]
-  L --> M[Gerador de Métricas]
-  M --> S
-```
+![Workflow](workflow.PNG)
 
 ---
 
@@ -86,22 +76,15 @@ python main.py
 
 ---
 
-## 👥 Contribuindo
+## 📬 Contato
+Tem dúvidas, sugestões?
 
-Quer contribuir? Ótimo! Veja nosso guia de contribuição em [`CONTRIBUTING.md`](CONTRIBUTING.md) e confira as [issues abertas](https://github.com/seu-usuario/sentinelai/issues).
+Entre em contato com a equipe responsável:
 
----
+📧 Email: micaelle.osouza@gmail.com
 
-## 📜 Licença
+🌐 Website: https://sentinelaiscore.streamlit.app/
 
-Este projeto está licenciado sob a Licença MIT. Veja o arquivo [`LICENSE`](LICENSE) para mais detalhes.
 
----
+Sinta-se à vontade para abrir Issues neste repositório para reportar bugs, propor melhorias ou solicitar funcionalidades.
 
-## ✨ Agradecimentos
-
-- A todos os especialistas em reputação corporativa que inspiraram a arquitetura
-- À comunidade de IA e agentes autônomos que ajudaram na evolução do projeto
-```
-
----
