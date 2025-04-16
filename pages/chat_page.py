@@ -50,10 +50,10 @@ def atualizar_chat(chat_container,prompt=None):
                             if message["events"]:
                                 for event in message["events"]:
                                     if isinstance(event["content"],ToolMessage):
-                                        with st.expander(f"Agente {str(event.role).title()} usando ferramenta ..."):  
+                                        with st.expander(f"** :mag: Agente {str(event.role).title()} usando ferramenta ...**"):  
                                             st.write(event.content.content)
                                     else:
-                                        with st.expander(f"Agente {str(event.role).title()} pensando ..."):  
+                                        with st.expander(f"** :brain: Agente {str(event.role).title()} pensando ...**"):  
                                             st.write(event.content.content)
                         st.markdown(message["content"])    
 
@@ -74,10 +74,10 @@ def atualizar_chat(chat_container,prompt=None):
                             if not isinstance(response['messages'][-1],HumanMessage):
                                 events.append({"role":role_name,"content":response['messages'][-1]})
                                 if isinstance(response['messages'][-1],ToolMessage):
-                                    with st.expander(f"Agente {str(role_name).title()} usando ferramenta ..."):  
+                                    with st.expander(f"** :mag: Agente {str(role_name).title()} usando ferramenta ...**"):  
                                         st.write(response['messages'][-1].content)
                                 else:
-                                    with st.expander(f"Agente {str(role_name).title()} pensando ..."):  
+                                    with st.expander(f"** :brain: Agente {str(role_name).title()} pensando ...**"):  
                                         st.write(response['messages'][-1].content)
                         else:
                             if not isinstance(response['messages'][-1],HumanMessage):
