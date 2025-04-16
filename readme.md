@@ -1,90 +1,87 @@
-# 🛡️ SentinelAI – Diagnóstico Reputacional de Empresas na Mídia
+# 🛡️ SentinelAI – Corporate Reputation Diagnosis in the Media
 
-**SentinelAI** é um sistema inteligente composto por múltiplos agentes que coletam, analisam e sintetizam informações públicas sobre empresas, com foco em reputação e percepção pública na mídia. Ele entrega diagnósticos estruturados por dimensão reputacional (como ESG, Ética, Governança, etc.), utilizando uma abordagem modular, conversacional e explicável.
-
----
-
-## 🚀 Funcionalidades Principais
-
-- 🔍 Busca estratégica de notícias por dimensão de análise
-- 🧠 Interpretação automatizada e estruturada das notícias
-- 📊 Geração de métricas de reputação normalizadas (0–5)
-- 💬 Interface conversacional com agente especialista em reputação
-- 📈 Diagnóstico estratégico baseado em sentimentos, impacto e relevância
-- 🏷️ Classificação por fonte (grande mídia, especializada, oficial etc.)
+**SentinelAI** is an intelligent system composed of multiple agents that collect, analyze, and synthesize public information about companies, focusing on reputation and public perception in the media. It delivers structured diagnostics by reputational dimension (such as ESG, Ethics, Governance, etc.), using a modular, conversational, and explainable approach.
 
 ---
 
-## 🧠 Arquitetura de Agentes
+## 🚀 Key Features
 
-O sistema é composto por 6 agentes principais, cada um com função específica no workflow:
-
-| Agente                        | Papel                                       |
-|------------------------------|---------------------------------------------|
-| **Planejador de Busca**      | Estratégia de coleta por dimensão           |
-| **Executor de Busca e Relevância**| Busca em fontes confiáveis (via internet) e faz curadoria das notícias encontradas  |
-| **Leitor/Analisador**        | Interpretação semântica das notícias        |
-| **Gerador de Métrica**       | Cálculo de pontuação reputacional (0–5)     |
-| **Supervisor Conversacional**| Interação com o usuário e síntese estratégica|
+- 🔍 Strategic news search by analysis dimension  
+- 🧠 Automated and structured interpretation of news content  
+- 📊 Generation of normalized reputation metrics (0–5)  
+- 💬 Conversational interface with a reputation expert agent  
+- 📈 Strategic diagnosis based on sentiment, impact, and relevance  
+- 🏷️ Classification by source type (mainstream media, specialized, official, etc.)
 
 ---
 
-## 📊 Sobre a Métrica Reputacional
+## 🧠 Agent Architecture
 
-A pontuação por dimensão reputacional é calculada com base em:
+The system consists of 6 main agents, each with a specific role in the workflow:
 
-- **Sentimento da notícia** (positivo, neutro, negativo)
-- **Intensidade de impacto** (muito alto, alto, moderado, baixo)
-- **Peso da fonte** (influência e credibilidade do veículo)
-- **Relevância estratégica** da informação
-
-Esses fatores são ponderados e transformados em um **score normalizado entre 0 e 5**. A ausência de notícias também é tratada na lógica de reputação, refletindo neutralidade ou visibilidade reduzida.
-
-[📄 Ver documentação completa da métrica.](https://sentinelaiscore.streamlit.app/score_page)
+| Agent                          | Role                                                   |
+|-------------------------------|--------------------------------------------------------|
+| **Search Planner**            | Collection strategy per analysis dimension             |
+| **Search & Relevance Executor**| Searches trusted sources (via the internet) and curates relevant news |
+| **Reader/Analyzer**           | Semantic interpretation of news content                |
+| **Metric Generator**          | Calculates reputation score (0–5)                      |
+| **Conversational Supervisor** | Interacts with users and provides strategic synthesis  |
 
 ---
 
-## 🧭 Workflow do Sistema
+## 📊 About the Reputation Metric
+
+The score per reputational dimension is calculated based on:
+
+- **News sentiment** (positive, neutral, negative)  
+- **Impact intensity** (very high, high, moderate, low)  
+- **Source weight** (influence and credibility of the outlet)  
+- **Strategic relevance** of the information  
+
+These factors are weighted and transformed into a **normalized score between 0 and 5**. The absence of news is also accounted for in the reputation logic, reflecting neutrality or reduced visibility.
+
+[📄 View full metric documentation.](https://sentinelaiscore.streamlit.app/score_page)
+
+---
+
+## 🧭 System Workflow
 
 ![Workflow](workflow.PNG)
 
 ---
 
-## 🧪 Exemplo de Uso
+## 🧪 Usage Example
 
 ```bash
-# Interação com agente conversacional
-Usuário: "Quero saber como está a reputação da Vale em ESG."
-SentinelAI: "A nota da dimensão ESG é 4.3. A empresa foi destaque em rankings de sustentabilidade..."
+# Interaction with the conversational agent
+User: "I’d like to know how Vale’s reputation is doing in ESG."
+SentinelAI: "The ESG dimension score is 4.3. The company has been highlighted in sustainability rankings..."
 ```
 
 ---
 
-## ⚙️ Instalação e Execução
+## ⚙️ Installation & Execution
 
 ```bash
-# 1. Clone o repositório
-git clone https://github.com/seu-usuario/sentinelai.git
+# 1. Clone the repository
+git clone https://github.com/your-username/sentinelai.git
 cd sentinelai
 
-# 2. Instale as dependências
+# 2. Install the dependencies
 pip install -r requirements.txt
 
-# 3. Execute o app principal
+# 3. Run the main app
 python main.py
 ```
 
 ---
 
-## 📬 Contato
-Tem dúvidas, sugestões?
+## 📬 Contact  
+Have questions or suggestions?
 
-Entre em contato com a equipe responsável:
+Get in touch with the team:
 
-📧 Email: micaelle.osouza@gmail.com
-
+📧 Email: micaelle.osouza@gmail.com  
 🌐 Website: https://sentinelaiscore.streamlit.app/
 
-
-Sinta-se à vontade para abrir Issues neste repositório para reportar bugs, propor melhorias ou solicitar funcionalidades.
-
+Feel free to open Issues in this repository to report bugs, suggest improvements, or request features.
