@@ -12,7 +12,7 @@ from langgraph.graph import StateGraph, END
 from langgraph.prebuilt import ToolNode
 from langchain_core.messages import HumanMessage
 from langgraph.checkpoint.memory import MemorySaver
-
+import streamlit as st
 from src.agents.planner import llm, llm_formater
 from src.tools import tools_researcher
 from src.prompts.planner import prompt_structure
@@ -35,11 +35,17 @@ class DimensaoNews(TypedDict):
 class ListDimensaoNews(TypedDict):
     list_dimensao_news: Annotated[List[DimensaoNews],"Lista de dimensão com notícias relevantes para a empresa"]
 
-model_researcher_formater = llm_formater.with_structured_output(ListDimensaoNews)
 
 class AgenteResearcher(MessagesState):
     final_response: Annotated[dict, 'resposta final estruturada']
 
+
+@st.cache_resource()
+def memory(id):
+    memory_analizer = MemorySaver()
+    return memory_analizer
+
+model_researcher_formater = llm_formater.with_structured_output(ListDimensaoNews)
 
 memory_researcher = MemorySaver()
 

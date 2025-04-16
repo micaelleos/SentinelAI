@@ -12,7 +12,7 @@ from langgraph.graph import StateGraph, END
 from langgraph.prebuilt import ToolNode
 from langchain_core.messages import HumanMessage
 from langgraph.checkpoint.memory import MemorySaver
-
+import streamlit as st
 from src.agents.planner import llm, llm_formater
 from src.tools import tool_reader
 from src.prompts.planner import prompt_structure
@@ -41,6 +41,10 @@ class Avaliacao(TypedDict):
 class AgenteReader(MessagesState):
     final_response: Annotated[Avaliacao, 'resposta final estruturada']
 
+@st.cache_resource()
+def memory(id):
+    memory_analizer = MemorySaver()
+    return memory_analizer
 
 model_reader = llm.bind_tools(tool_reader)
 model_reader_structured = llm_formater.with_structured_output(Avaliacao)

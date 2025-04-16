@@ -16,8 +16,9 @@ def response_generator(response):
 if "messages" not in st.session_state:
     st.session_state.id = uuid.uuid4()
     st.session_state.messages = []
-    st.session_state.messages.append({"role": "assistant", "content":saudacao})
+    st.session_state.messages.append({"role": "assistant", "content":saudacao,"events":None})
     st.session_state.var_exibicao=0
+
 
 if "issues" not in st.session_state:
     st.session_state.issues = []
@@ -43,8 +44,17 @@ def atualizar_chat(chat_container,prompt=None):
             else:
                 for i in range(0,len(messages)):
                     message = messages[i]       
-                                        
+                         
                     with st.chat_message(message["role"]):
+                        if "events" in message.keys():
+                            if message["events"]:
+                                for event in message["events"]:
+                                    if isinstance(event["content"],ToolMessage):
+                                        with st.expander(f"Agente {str(event.role).title()} usando ferramenta ..."):  
+                                            st.write(event.content.content)
+                                    else:
+                                        with st.expander(f"Agente {str(event.role).title()} pensando ..."):  
+                                            st.write(event.content.content)
                         st.markdown(message["content"])    
 
         else:
@@ -53,14 +63,16 @@ def atualizar_chat(chat_container,prompt=None):
                     st.markdown(message[-1]["content"])  
 
             with st.chat_message("assistant"):
+                events = []
                 with st.spinner(''):
                     for role, response in bot.stream(prompt):
                         
                         if role:
                             role_str = role[0]
                             role_name, role_id = role_str.split(":")
-                            if not isinstance(response['messages'][-1],HumanMessage):
 
+                            if not isinstance(response['messages'][-1],HumanMessage):
+                                events.append({"role":role_name,"content":response['messages'][-1]})
                                 if isinstance(response['messages'][-1],ToolMessage):
                                     with st.expander(f"Agente {str(role_name).title()} usando ferramenta ..."):  
                                         st.write(response['messages'][-1].content)
@@ -71,7 +83,7 @@ def atualizar_chat(chat_container,prompt=None):
                             if not isinstance(response['messages'][-1],HumanMessage):
                                 #st.write(response['messages'][-1].content)
                                 st.write_stream(response_generator(response['messages'][-1].content))
-                                st.session_state.messages.append({"role": "assistant", "content": response['messages'][-1].content})
+                                st.session_state.messages.append({"role": "assistant", "content": response['messages'][-1].content,"events":events})
 
 chat_container = st.container(height=400,border=False)
 
